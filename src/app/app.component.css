@@ -1,0 +1,102 @@
+/* table */
+  .table-header{
+    background-color: #ff4500b5;
+  }
+
+
+
+
+/* form */
+
+input[type="date"]{
+    text-transform: uppercase;
+    color: #9da2a6;
+}
+
+.drop-down{
+    width: 35%;
+    /* border-radius: 10px; */
+    border-color: #17d617;
+    border-width: 0.11rem;
+    color: #6c7596;
+}
+
+.drop-down:active{
+    width: 35%;
+    /* border-radius: 10px; */
+    border-color: #17d617;
+    border-width: 0.11rem;
+    color: #6c7596;
+}
+
+.form{
+    padding: 2rem;
+    border-radius: 10px;
+    background-color: #dcdcdc42;
+    font-family: monospace;
+}
+
+.row > * {
+    padding-left: 0 !important;
+}
+
+.btn-submit{
+    background-color: #ff4500b5;
+    padding: 0.5rem;
+    border-color: transparent;
+    width: 14.5rem;
+    font-weight: 900;
+    margin-top: 15px;
+}
+
+.btn-submit:hover{
+    background-color: orangered;
+}
+
+input:focus{
+    border-color:transparent;
+    box-shadow: 0 0 0 0.25rem #ff7b4abf;
+}
+
+.col-select{
+    padding: 20px;
+}
+
+.text-days{
+    padding: 15px 0px;
+    color: #008000bd;
+    font-weight: 200;
+}
+
+.err-labels{
+    padding: 15px 0px;
+    color: #fc7847;
+    font-weight: 200;
+}
+/* .text-days > span{
+    margin-right: 5px;
+} */
+textarea{
+    width: 50%;
+    height: 8rem;
+}
+textarea:focus{
+    border-color: transparent;
+    box-shadow: 0 0 0 0.25rem #ff7b4abf
+}
+
+.text-label{
+        position: absolute;
+        top: px;
+        padding: 0px 10px;
+}
+
+
+.type-label{
+    padding-left: 10px;
+}
+
+/* temporary calss until i remeber bootsrap classes */
+.days{
+    margin-right: 3px;
+}

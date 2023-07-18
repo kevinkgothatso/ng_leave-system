@@ -1,0 +1,121 @@
+<div>
+  <div>
+    <h1>Leave Management System</h1>
+  </div>
+</div>
+<!-- table for request -->
+<div>
+  <div class="container">
+    <table class="table table-striped">
+      <thead class="table-header">
+        <tr>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Leave Type</th>
+          <th scope="col">Start Date</th>
+          <th scope="col">End Date</th>
+          <th scope="col">Days Taken</th>
+          <th scope="col">Days Left</th>
+          <th scope="col">Reason For Leave</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of req">
+          <td>{{request.name}}</td>
+          <td>{{request.surname}}</td>
+          <td>{{request.start_date}}</td>
+          <td>{{request.end_date}}</td>
+          <td>{{request.days_taken}}</td>
+          <td>{{request.days_left}}</td>
+          <td>{{request.leave_type}}</td>
+          <td>{{request.reason}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- Form -->
+<div class="container form">
+  <div class="">
+
+      <form (ngSubmit)="appPostRequests()" [formGroup]="requestGroup">
+
+      <div class="row ">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="First Name" formControlName="name">
+          <span class="err-labels"  *ngIf="this.requestGroup.controls.name?.untouched && invalid">Name is required</span>
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Last Name" formControlName="surname">
+          <span class="err-labels" *ngIf="requestGroup.controls.surname?.untouched && invalid">Surname is required</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-select">
+          <select class="custom-select mr-sm-2 drop-down" id="inlineFormCustomSelect" formControlName="leave_type">
+            <option disabled value="Type Of Leave...">Type Of Leave...</option>
+            <option value="Annual Leave">Annual Leave</option>
+            <option value="Sick Leave">Sick Leave</option>
+            <option value="Maternity Leave">Maternity Leave</option>
+            <option value="Maternity Leave">Study Leave</option>
+            <option value="Family Responsibility Leave">Family Responsibility Leave</option>
+          </select>
+          <span class="pl-5 err-labels type-label"  *ngIf="requestGroup.controls.leave_type.untouched && invalid">Leave type is required</span>
+        </div>
+      </div>
+
+      <div class="row ">
+        <div class="col ">
+          <label for="start-date">Start Of Leave</label>
+          <input type="date" class="form-control" id="start-date" formControlName="start_date" >
+          <span class="err-labels" *ngIf="requestGroup.controls.start_date?.untouched && invalid">Choose a start leave date</span>
+        </div>
+        <div class="col">
+          <label for="end-date">End Of Leave</label>
+          <input type="date" class="form-control" id="end-date" formControlName="end_date">
+          <span class="err-labels" *ngIf="requestGroup.controls.end_date?.untouched && invalid">Choose an end leave date</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div *ngIf="isDateGreater() && !isDaysLeftNeg()" class="col text-days">
+          <span class="mr-2 days">{{ calculateDaysTaken()}}</span>Leave days taken
+            <!-- Remember to put bootsrap margin class -->
+        </div>
+
+        <div *ngIf="isDateGreater() && !isDaysLeftNeg()" class="col text-days">
+          <span class="mr-2 days">{{ calcDaysLeft()}}</span>Leave days left  
+          <!-- Remember to put bootsrap margin class -->
+        </div>
+
+        <div  class="col text-days">
+
+              <span *ngIf="!isDateNull()"> N.B  You can't take leave days greater than 15 days</span>
+
+              <span class="err-labels" *ngIf="!isDateGreater() && isDateNull()">
+                Your start leave date can't be greater than your leave end date</span>
+
+                <span *ngIf="isDaysLeftNeg() && isDateGreater()" class="err-labels ">
+                  You tried to take days greater 15 days, choose days within 15 days</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <textarea placeholder="Reason for the leave request..." formControlName="reason">
+          </textarea>
+          <span class="err-labels text-label" *ngIf="requestGroup.controls.reason?.untouched && invalid">Reason for leave is required</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <input type="submit" class="btn btn-secondary btn-submit" value="Submit Leave">
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div> 
+
